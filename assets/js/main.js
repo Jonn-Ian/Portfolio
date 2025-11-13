@@ -125,33 +125,115 @@
     },
     {
       id: "carouselProject2",
-      title: "Student Management System",
-      description: "A PHP and MySQL-based web app for managing student records, grades, and attendance.",
+      title: "IBM Data Visualization",
+      description: "A Power BI dashboard project visualizing global Product Sales data for strategic insights.",
       images: [
-        "project2-1.jpg",
-        "project2-2.jpg"
+        "imb.png",
       ]
     },
     {
       id: "carouselProject3",
-      title: "Data Dashboard",
-      description: "Interactive dashboards using Power BI to visualize academic performance and trends.",
+      title: "tic tac toe game",
+      description: "A python based tic tac toe game that allows a players to play against a computer",
       images: [
-        "project3-1.jpg",
-        "project3-2.jpg"
+        "ttc1.png",
+        "ttc2.png",
+        "ttc3.png",
+        "ttc4.png",
+        "ttc5.png",
+        "ttc6.png"
       ]
     },
     {
       id: "carouselProject4",
-      title: "Weather App",
-      description: "A Python-based CLI tool that fetches real-time weather data using the OpenWeatherMap API.",
+      title: "Data Analysis With Power BI",
+      description: "A national data challenge project analyzing various datasets using Power BI for insights and visualizations.",
       images: [
-        "project4-1.jpg",
-        "project4-2.jpg"
+        "d1.png"
+      ]
+    },
+    {
+      id: "carouselProject5",
+      title: "A Lightweight Generator",
+      description: "A lightweight generator using python that generates words using random library for A.I studies.",
+      images: [
+        "generator.png"
       ]
     }
   ];
 
+    // === Dynamic Iframely Certifications ===
+  const certifications = [
+    {
+      title: "HackerRank Certification",
+      issued: "Nov 2025",
+      url: "http://www.hackerrank.com/certificates/69db5a0fe69c",
+      embed: "https://iframely.net/VqjIaNPs?theme=dark",
+      padding: "52.356%"
+    },
+    {
+      title: "Creating Charts and Dashboards using Tableau",
+      issued: "Nov 2025",
+      url: "https://courses.cognitiveclass.ai/certificates/4eaa54337da14a3c86ae928f055f32e2",
+      embed: "https://iframely.net/AUqMLyNb?theme=dark",
+      padding: "68.7447%"
+    },
+    {
+      title: "Data Analysis with Python",
+      issued: "Nov 2025",
+      url: "https://courses.cognitiveclass.ai/certificates/49149aed35a14707a4810c92200e6a5f",
+      embed: "https://iframely.net/ZmUv62XZ?theme=dark",
+      padding: "68.7447%"
+    },
+    {
+      title: "Python 101 for Data Science",
+      issued: "Nov 2025",
+      url: "https://courses.cognitiveclass.ai/certificates/02ee1f0f9cff4feca982e3c857553a85",
+      embed: "https://iframely.net/NX3p8H80?theme=dark",
+      padding: "68.7447%"
+    },
+    {
+      title: "SQL and Relational Databases 101",
+      issued: "Nov 2025",
+      url: "https://courses.cognitiveclass.ai/certificates/92e010ca6ccd40dcb3e2a063e46dd501",
+      embed: "https://iframely.net/2kG72E4W?theme=dark",
+      padding: "68.7447%"
+    }
+  ];
+
+  const certContainer = document.getElementById("certificationsContainer");
+
+  if (certContainer) {
+    certifications.forEach(cert => {
+      const col = document.createElement("div");
+      col.className = "col-md-4";
+
+      const embed = document.createElement("div");
+      embed.className = "iframely-embed";
+
+      const responsive = document.createElement("div");
+      responsive.className = "iframely-responsive";
+      responsive.style.paddingBottom = cert.padding;
+      responsive.style.paddingTop = "120px";
+
+      const link = document.createElement("a");
+      link.href = cert.url;
+      link.setAttribute("data-iframely-url", cert.embed);
+
+      responsive.appendChild(link);
+      embed.appendChild(responsive);
+      col.appendChild(embed);
+
+      const caption = document.createElement("p");
+      caption.className = "mt-2 text-center";
+      caption.innerHTML = `<strong>${cert.title}</strong><br><small>Issued ${cert.issued}</small>`;
+      col.appendChild(caption);
+
+      certContainer.appendChild(col);
+    });
+  }
+
+  // === Dynamic Carousel Projects ===
   const container = document.getElementById("projectsContainer");
 
   if (container) {
@@ -177,7 +259,7 @@
         if (index === 0) item.classList.add("active");
 
         const img = document.createElement("img");
-        img.src = `assets/imgs/detour_cafe/${imgName}`; // ← Corrected path
+        img.src = `assets/imgs/${imgName}`; // ← Corrected path
         img.className = "d-block w-100";
         img.alt = `${project.title} Image ${index + 1}`;
 

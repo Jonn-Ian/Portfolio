@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="Portfolio" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Jonn Ian B. Sabar - Portfolio</title>
 
   <!-- Fonts -->
@@ -36,6 +36,8 @@
         <li><a href="#hero" class="active"><i class="bi bi-house navicon"></i>Home</a></li>
         <li><a href="#about"><i class="bi bi-person navicon"></i> About</a></li>
         <li><a href="#resume"><i class="bi bi-file-earmark-text navicon"></i> Resume</a></li>
+        <li><a href="#certifications"><i class="bi bi-award navicon"></i> Certifications</a></li>
+        <li><a href="#projects"><i class="bi bi-kanban navicon"></i> Projects</a></li>
       </ul>
     </nav>
   </header>
@@ -47,9 +49,11 @@
         <h2>I am</h2>
         <p>Jonn Ian B. Sabar</p>
       </div>
+      
     </section>
 
-    <section id="about" class="about section">
+    <!-- About Section -->
+     <section id="about" class="about section">
       <div class="container section-title" data-aos="fade-up">
         <h2>About</h2>
         <p>I am a fresh graduate with a Bachelor of Science in Information Technology from Pamantasan ng Lungsod ng Maynila, honored with Cum Laude distinction. My academic journey focused on building a strong foundation in programming, with hands-on experience in Java, PHP, Python, and C++.
@@ -85,6 +89,7 @@
       </div>
     </section>
 
+    <!-- Resume Section -->
     <section id="resume" class="resume section">
       <div class="container section-title" data-aos="fade-up">
         <h2>Resume</h2>
@@ -142,6 +147,29 @@
         </div>
       </div>
     </section>
+
+      <!-- Certifications Section -->
+    <section id="certifications" class="section">
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Certifications</h2>
+        <p>Here are some of the certifications I've earned to strengthen my skills and credibility.</p>
+      </div>
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row gy-4" id="certificationsContainer"></div>
+      </div>
+    </section>
+
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects_section">
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Projects</h2>
+        <p>These are some of the projects I've built to apply my skills and solve real-world problems.</p>
+      </div>
+      <div class="container">
+        <div class="row gy-4" id="projectsContainer"></div>
+      </div>
+    </section>
   </main>
 
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
@@ -149,10 +177,7 @@
   </a>
 
   <div id="preloader"></div>
-  
-  <script src="assets/vendor/typed.js/typed.umd.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/js/main.js"></script>
+
   <!-- Vendor JS -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
@@ -160,5 +185,7 @@
 
   <!-- Main JS -->
   <script src="assets/js/main.js"></script>
+  <script async src="https://iframely.net/embed.js"></script>
+
 </body>
 </html>
