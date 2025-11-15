@@ -1,8 +1,13 @@
+/*--------------------------------------------------------------
+# Root Variables
+--------------------------------------------------------------*/
 :root {
+  /* Fonts */
   --default-font: "Roboto", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --heading-font: "Raleway", sans-serif;
   --nav-font: "Poppins", sans-serif;
 
+  /* Colors */
   --background-color: #ffffff;
   --default-color: #272829;
   --heading-color: #0e294d;
@@ -10,16 +15,18 @@
   --surface-color: #ffffff;
   --contrast-color: #ffffff;
 
+  /* Navigation */
   --nav-color: #a8a9b4;
   --nav-hover-color: #ffffff;
-  --nav-mobile-background-color: #040b14;
-  --nav-dropdown-background-color: #040b14;
+  --nav-mobile-bg: #040b14;
+  --nav-dropdown-bg: #040b14;
   --nav-dropdown-color: #a8a9b4;
   --nav-dropdown-hover-color: #ffffff;
 
   scroll-behavior: smooth;
 }
 
+/* Light & Dark Themes */
 .light-background {
   --background-color: #f4fafd;
   --surface-color: #ffffff;
@@ -33,92 +40,109 @@
   --contrast-color: #ffffff;
 }
 
+/*--------------------------------------------------------------
+# Global Styles
+--------------------------------------------------------------*/
 body {
   color: var(--default-color);
   background-color: var(--background-color);
   font-family: var(--default-font);
+  margin: 0;
+  padding: 0;
 }
 
 a {
   color: var(--accent-color);
   text-decoration: none;
-  transition: 0.3s;
+  transition: color 0.3s;
 }
 
 a:hover {
   color: color-mix(in srgb, var(--accent-color), transparent 25%);
-  text-decoration: none;
 }
 
 h1, h2, h3, h4, h5, h6 {
   color: var(--heading-color);
   font-family: var(--heading-font);
+  margin: 0;
 }
 
-/* Header */
+/*--------------------------------------------------------------
+# Header
+--------------------------------------------------------------*/
 .header {
-  color: var(--default-color);
-  background-color: var(--background-color);
   position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
-  padding: 0 15px;
   width: 300px;
-  transition: all ease-in-out 0.3s;
+  padding: 0 15px;
   overflow-y: auto;
+  background-color: var(--background-color);
+  color: var(--default-color);
+  transition: left 0.3s ease-in-out;
   z-index: 997;
   border-right: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
 }
 
 .header .profile-img img {
-  margin: 15px auto;
   display: block;
   width: 120px;
+  margin: 15px auto;
   border: 8px solid color-mix(in srgb, var(--default-color), transparent 85%);
-}
-
-.header .logo {
-  line-height: 1;
-  margin-bottom: 15px;
+  border-radius: 50%;
 }
 
 .header .logo h1 {
   font-size: 24px;
-  margin: 0;
   font-weight: 700;
+  margin-bottom: 15px;
   color: var(--heading-color);
 }
 
-.header .social-links {
-  margin: 0 0 20px 0;
-}
-
 .header .social-links a {
-  font-size: 16px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: color-mix(in srgb, var(--default-color), transparent 90%);
-  color: var(--default-color);
-  margin: 0 2px;
-  border-radius: 50%;
+  font-size: 16px;
   width: 40px;
   height: 40px;
-  transition: 0.3s;
+  margin: 0 2px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--default-color), transparent 90%);
+  color: var(--default-color);
+  transition: all 0.3s;
 }
 
 .header .social-links a:hover {
-  color: var(--contrast-color);
   background: var(--accent-color);
+  color: var(--contrast-color);
 }
 
-@media (min-width: 1200px) {
-  .header ~ main {
-    margin-left: 300px;
-  }
+/* Header Toggle Button */
+.header .header-toggle {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--accent-color);
+  color: var(--contrast-color);
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 9999;
+  transition: background-color 0.3s;
 }
 
+.header .header-toggle:hover {
+  background-color: color-mix(in srgb, var(--accent-color) 90%, white 15%);
+}
+
+/* Header visibility on mobile */
 @media (max-width: 1199px) {
   .header {
     left: -100%;
@@ -129,35 +153,15 @@ h1, h2, h3, h4, h5, h6 {
   left: 0;
 }
 
-.header .header-toggle {
-  color: var(--contrast-color);
-  background-color: var(--accent-color);
-  font-size: 22px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  cursor: pointer;
-  position: fixed;
-  top: 15px;
-  right: 15px;
-  z-index: 9999;
-  transition: background-color 0.3s;
+@media (min-width: 1200px) {
+  .header ~ main {
+    margin-left: 300px;
+  }
 }
 
-.header .header-toggle:hover {
-  color: var(--contrast-color);
-  background-color: color-mix(in srgb, var(--accent-color) 90%, white 15%);
-}
-
-/* Navigation */
-.navmenu {
-  padding: 0;
-  z-index: 9997;
-}
-
+/*--------------------------------------------------------------
+# Navigation Menu
+--------------------------------------------------------------*/
 .navmenu ul {
   list-style: none;
   padding: 0 0 20px 0;
@@ -165,21 +169,20 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navmenu a {
-  color: var(--nav-color);
+  display: flex;
+  align-items: center;
   padding: 15px 10px;
   font-family: var(--nav-font);
   font-size: 16px;
   font-weight: 400;
-  display: flex;
-  align-items: center;
+  color: var(--nav-color);
   white-space: nowrap;
-  transition: 0.3s;
-  width: 100%;
+  transition: color 0.3s;
 }
 
 .navmenu a .navicon {
-  font-size: 20px;
   margin-right: 10px;
+  font-size: 20px;
 }
 
 .navmenu a:hover,
@@ -191,70 +194,14 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--accent-color);
 }
 
-/* Hero Section */
-.hero {
-  width: 100%;
-  min-height: 100vh;
-  position: relative;
-  padding: 80px 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.hero img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 1;
-}
-
-.hero:before {
-  content: "";
-  background: color-mix(in srgb, var(--background-color), transparent 70%);
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-}
-
-.hero .container {
-  position: relative;
-  z-index: 3;
-}
-
-.hero h2 {
-  margin: 0;
-  font-size: 64px;
-  font-weight: 700;
-}
-
-.hero p {
-  margin: 5px 0 0 0;
-  font-size: 26px;
-}
-
-.hero p span {
-  letter-spacing: 1px;
-  border-bottom: 2px solid var(--accent-color);
-}
-
-@media (max-width: 768px) {
-  .hero h2 {
-    font-size: 32px;
-  }
-  .hero p {
-    font-size: 20px;
-  }
-}
-
-/* About, Resume, Section Titles */
+/*--------------------------------------------------------------
+# Sections
+--------------------------------------------------------------*/
 section,
 .section {
+  padding: 60px 0;
   color: var(--default-color);
   background-color: var(--background-color);
-  padding: 60px 0;
   overflow: clip;
 }
 
@@ -270,44 +217,45 @@ section,
   position: relative;
 }
 
-.section-title h2:after {
+.section-title h2::after {
   content: "";
   position: absolute;
-  display: block;
+  bottom: 0;
+  left: 0;
   width: 50px;
   height: 3px;
   background: var(--accent-color);
-  left: 0;
-  bottom: 0;
 }
 
+/*--------------------------------------------------------------
+# Resume
+--------------------------------------------------------------*/
 .resume .resume-title {
   font-size: 26px;
   font-weight: 700;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin: 20px 0;
 }
 
 .resume .resume-item {
-  padding: 0 0 20px 20px;
+  position: relative;
+  padding-left: 20px;
   margin-top: -2px;
   border-left: 2px solid var(--accent-color);
-  position: relative;
 }
 
 .resume .resume-item h4 {
   font-size: 18px;
   font-weight: 600;
   text-transform: uppercase;
-  color: color-mix(in srgb, var(--default-color), transparent 20%);
   margin-bottom: 10px;
+  color: color-mix(in srgb, var(--default-color), transparent 20%);
 }
 
 .resume .resume-item h5 {
-  font-size: 16px;
-  padding: 5px 15px;
   display: inline-block;
+  font-size: 16px;
   font-weight: 600;
+  padding: 5px 15px;
   margin-bottom: 10px;
 }
 
@@ -324,17 +272,20 @@ section,
   position: absolute;
   width: 16px;
   height: 16px;
-  border-radius: 50px;
+  border-radius: 50%;
   left: -9px;
   top: 0;
   background: var(--background-color);
   border: 2px solid var(--accent-color);
 }
-/* Projects Section */
+
+/*--------------------------------------------------------------
+# Projects
+--------------------------------------------------------------*/
 .projects_section {
+  padding: 60px 0;
   background-color: var(--background-color);
   color: var(--default-color);
-  padding: 60px 0;
 }
 
 .project-card {
@@ -343,7 +294,6 @@ section,
   padding: 20px;
   border-radius: 8px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  height: 100%;
 }
 
 .project-card:hover {
@@ -361,27 +311,112 @@ section,
 .project-card p {
   font-size: 14px;
   line-height: 1.6;
-  color: var(--default-color);
+}
+/*--------------------------------------------------------------
+# Charts / Line Graph Section
+--------------------------------------------------------------*/
+.line-graph-section {
+  width: 100%;
+  min-height: 100vh;
+  padding: 60px 20px;
+  background: var(--background-color); /* dark background */
+  text-align: center;
 }
 
-/* Footer */
+.line-graph-section h2 {
+  margin-bottom: 20px;
+  font-size: 42px;
+  font-weight: 700;
+  color: #fff; /* main section title white */
+}
+
+/* Individual graph container */
+.line-graph {
+  background: var(--surface-color);
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  margin-bottom: 30px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.line-graph:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+}
+
+/* Graph titles (For a Day, For a Month, For a Year) */
+.line-graph h3 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #fff; /* ✅ force white text */
+  font-family: Poppins, sans-serif;
+}
+
+/* Canvas styling */
+.line-graph canvas {
+  width: 100% !important;
+  height: 200px !important;
+}
+
+/* Row layout for multiple graphs */
+.line-graph-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.line-graph-row .line-graph {
+  flex: 1;
+  min-width: 300px;
+  max-width: 480px;
+}
+
+/*--------------------------------------------------------------
+# Responsive Adjustments
+--------------------------------------------------------------*/
+@media (max-width: 1024px) {
+  .line-graph-row .line-graph {
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .line-graph-section h2 {
+    font-size: 32px;
+  }
+  .line-graph h3 {
+    font-size: 18px;
+  }
+  .line-graph-row {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .line-graph-section {
+    padding: 40px 10px;
+  }
+}
+
+/*--------------------------------------------------------------
+# Footer
+--------------------------------------------------------------*/
 .footer {
-  color: var(--default-color);
   background-color: var(--background-color);
+  color: var(--default-color);
   font-size: 14px;
   padding: 40px 0;
-  position: relative;
   border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
 }
 
-.footer .copyright p {
-  margin-bottom: 0;
-}
-
 .footer .credits {
-  margin-top: 4px;
   font-size: 13px;
   text-align: center;
+  margin-top: 4px;
 }
 
 /*--------------------------------------------------------------
@@ -391,8 +426,8 @@ section,
   position: fixed;
   inset: 0;
   z-index: 999999;
-  overflow: hidden;
   background: var(--background-color);
+  overflow: hidden;
   transition: all 0.6s ease-out;
 }
 
@@ -401,21 +436,17 @@ section,
   position: fixed;
   top: calc(50% - 30px);
   left: calc(50% - 30px);
-  border: 6px solid #ffffff;
-  border-color: var(--accent-color) transparent var(--accent-color) transparent;
-  border-radius: 50%;
   width: 60px;
   height: 60px;
+  border-radius: 50%;
+  border: 6px solid var(--accent-color);
+  border-color: var(--accent-color) transparent var(--accent-color) transparent;
   animation: animate-preloader 1.5s linear infinite;
 }
 
 @keyframes animate-preloader {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 /*--------------------------------------------------------------
@@ -423,31 +454,32 @@ section,
 --------------------------------------------------------------*/
 .scroll-top {
   position: fixed;
-  visibility: hidden;
-  opacity: 0;
-  right: 15px;
   bottom: -15px;
-  z-index: 99999;
-  background-color: var(--accent-color);
+  right: 15px;
   width: 44px;
   height: 44px;
   border-radius: 50px;
+  background-color: var(--accent-color);
+  opacity: 0;
+  visibility: hidden;
+  z-index: 99999;
   transition: all 0.4s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .scroll-top i {
   font-size: 24px;
   color: var(--contrast-color);
-  line-height: 0;
+}
+
+.scroll-top.active {
+  bottom: 15px;
+  opacity: 1;
+  visibility: visible;
 }
 
 .scroll-top:hover {
   background-color: color-mix(in srgb, var(--accent-color), transparent 20%);
-  color: var(--contrast-color);
-}
-
-.scroll-top.active {
-  visibility: visible;
-  opacity: 1;
-  bottom: 15px;
 }

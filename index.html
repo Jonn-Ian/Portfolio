@@ -16,8 +16,9 @@
   <!-- Main CSS -->
   <link href="assets/css/main.css" rel="stylesheet" />
 </head>
-
 <body class="index-page">
+
+  <!-- Header -->
   <header id="header" class="header dark-background d-flex flex-column">
     <i class="header-toggle d-xl-none bi bi-list"></i>
     <div class="profile-img">
@@ -33,7 +34,7 @@
     </div>
     <nav id="navmenu" class="navmenu">
       <ul>
-        <li><a href="#hero" class="active"><i class="bi bi-house navicon"></i>Home</a></li>
+        <li><a href="#hero" class="active"><i class="bi bi-house navicon"></i> Home</a></li>
         <li><a href="#about"><i class="bi bi-person navicon"></i> About</a></li>
         <li><a href="#resume"><i class="bi bi-file-earmark-text navicon"></i> Resume</a></li>
         <li><a href="#certifications"><i class="bi bi-award navicon"></i> Certifications</a></li>
@@ -43,17 +44,34 @@
   </header>
 
   <main class="main">
+    <!-- Hero / Portfolio Views -->
     <section id="hero" class="hero section dark-background">
-      <img src="https://scontent.fmnl17-5.fna.fbcdn.net/v/t39.30808-6/573029505_24672572479111944_1629954291665491974_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=833d8c&_nc_ohc=h-Wh2ZTeGxEQ7kNvwFvQFkA&_nc_oc=AdmdBlbbk0zi5utAMbYPIiB1BYTu9FyAO2HlXrIS1rxcVazpkOEt8hlwEAPsHLWAWXA&_nc_zt=23&_nc_ht=scontent.fmnl17-5.fna&_nc_gid=GUJr34V7qco0KlyFBUxBkg&oh=00_AfjDWm5VwdVFBvaRqhyzVuB6lS7Z7XZj2It1B8pOty5PvA&oe=6918D2F1" alt="Hero Background" data-aos="fade-in" />
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <h2>I am</h2>
-        <p>Jonn Ian B. Sabar</p>
+      <div class="container line-graph-section" data-aos="fade-up" data-aos-delay="100">
+        <h2>Portfolio Views</h2>
+        <p>This is a live-time views counter where it counts and directly visualize how many users who viewed my Portfolio</p>
+
+        <!-- Daily Chart -->
+        <div class="line-graph" data-aos="zoom-in" data-aos-delay="200">
+          <h3 class="chart-title">For a Day</h3>
+          <canvas id="viewsDay"></canvas>
+        </div>
+
+        <!-- Monthly & Yearly Charts -->
+        <div class="line-graph-row">
+          <div class="line-graph" data-aos="zoom-in" data-aos-delay="300">
+            <h3 class="chart-title">For a Month</h3>
+            <canvas id="viewsMonth"></canvas>
+          </div>
+          <div class="line-graph" data-aos="zoom-in" data-aos-delay="400">
+            <h3 class="chart-title">For a Year</h3>
+            <canvas id="viewsYear"></canvas>
+          </div>
+        </div>
       </div>
-      
     </section>
 
     <!-- About Section -->
-     <section id="about" class="about section">
+    <section id="about" class="about section">
       <div class="container section-title" data-aos="fade-up">
         <h2>About</h2>
         <p>I am a fresh graduate with a Bachelor of Science in Information Technology from Pamantasan ng Lungsod ng Maynila, honored with Cum Laude distinction. My academic journey focused on building a strong foundation in programming, with hands-on experience in Java, PHP, Python, and C++.
@@ -148,7 +166,7 @@
       </div>
     </section>
 
-      <!-- Certifications Section -->
+    <!-- Certifications Section -->
     <section id="certifications" class="section">
       <div class="container section-title" data-aos="fade-up">
         <h2>Certifications</h2>
@@ -158,7 +176,6 @@
         <div class="row gy-4" id="certificationsContainer"></div>
       </div>
     </section>
-
 
     <!-- Projects Section -->
     <section id="projects" class="projects_section">
@@ -177,15 +194,17 @@
   </a>
 
   <div id="preloader"></div>
-
   <!-- Vendor JS -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/typed.js/typed.umd.js"></script>
-
-  <!-- Main JS -->
-  <script src="assets/js/main.js"></script>
   <script async src="https://iframely.net/embed.js"></script>
 
+  <!-- Chart.js Library -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Custom JS -->
+  <script src="assets/js/main.js"></script>
+  <script type="module" src="assets/js/chart.js"></script> <!-- Load this last -->
 </body>
 </html>
