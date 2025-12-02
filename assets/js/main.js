@@ -159,6 +159,14 @@
       images: [
         "generator.png"
       ]
+    },
+    {
+      id: "carouselProject6",
+      title: "ARIMA AR(1) model",
+      description: "I built an AR(1) model from scratch, estimating the coefficient, checking residuals, and generating forecasts to understand ARIMA’s core mechanics.",
+      images: [
+        "ARIMA.png"
+      ]
     }
   ];
 
