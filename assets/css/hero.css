@@ -1,0 +1,85 @@
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  text-align: center;
+  background-size: cover;       /* scales image to fill hero */
+  background-position: center;  /* keeps image centered */
+  background-repeat: no-repeat;
+  transition: background-image 1s ease-in-out;
+  color: #fff;
+  padding: 0 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Dark overlay for readability */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 0;
+}
+
+.hero .container {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1; /* keep text above overlay */
+}
+
+/* Headings */
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.hero h2 {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #ccc;
+}
+
+/* Cursor customization */
+.typed-cursor {
+  font-weight: bold;
+  color: #00ffcc;
+  animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0; }
+}
+
+/* 📱 Tablet adjustments */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero h2 {
+    font-size: 1.2rem;
+  }
+}
+
+/* 📱 Small phones */
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero h2 {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 768px) {
+  .hero {
+    min-height: 20vh; /* reduce height so image doesn’t stretch too much */
+    background-size: contain; /* fit image without cropping */
+  }
+}
