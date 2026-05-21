@@ -125,10 +125,11 @@
     },
     {
       id: "carouselProject2",
-      title: "IBM Data Visualization",
+      title: "Data Analytics",
       description: "A Power BI dashboard project visualizing global Product Sales data for strategic insights.",
       images: [
         "imb.png",
+        "d1.png"
       ]
     },
     {
@@ -142,14 +143,6 @@
         "ttc4.png",
         "ttc5.png",
         "ttc6.png"
-      ]
-    },
-    {
-      id: "carouselProject4",
-      title: "Data Analysis With Power BI",
-      description: "A national data challenge project analyzing various datasets using Power BI for insights and visualizations.",
-      images: [
-        "d1.png"
       ]
     },
     {
@@ -267,9 +260,11 @@
         if (index === 0) item.classList.add("active");
 
         const img = document.createElement("img");
-        img.src = `assets/imgs/${imgName}`; // ← Corrected path
+        img.src = `assets/imgs/${imgName}`;
         img.className = "d-block w-100";
         img.alt = `${project.title} Image ${index + 1}`;
+        img.style.cursor = "zoom-in";
+        img.addEventListener("click", () => openLightbox(img.src, project.title));
 
         item.appendChild(img);
         inner.appendChild(item);
@@ -307,4 +302,68 @@
       container.appendChild(col);
     });
   }
+  // === Lightbox ===
+  const lightbox = document.createElement("div");
+  lightbox.id = "lightbox";
+  lightbox.innerHTML = `
+    <button id="lightbox-close" aria-label="Close">&times;</button>
+    <button id="lightbox-prev" aria-label="Previous">&#8249;</button>
+    <img id="lightbox-img" src="" alt="" />
+    <button id="lightbox-next" aria-label="Next">&#8250;</button>
+    <p id="lightbox-caption"></p>
+  `;
+  document.body.appendChild(lightbox);
+
+  let lightboxImages = [];
+  let lightboxIndex = 0;
+
+  function openLightbox(src, caption) {
+    const carousel = document.querySelector(`[data-bs-ride]`);
+    lightboxImages = Array.from(
+      document.querySelectorAll(".carousel-item img")
+    ).filter(img => {
+      return img.closest(".carousel").querySelector(".carousel-item.active img") === img ||
+        img.src === src ||
+        lightboxImages.includes(img.src);
+    });
+
+    const allCarousels = document.querySelectorAll(".carousel");
+    allCarousels.forEach(c => {
+      const active = c.querySelector(".carousel-item.active img");
+      if (active && active.src === src) {
+        lightboxImages = Array.from(c.querySelectorAll(".carousel-item img"));
+        lightboxIndex = lightboxImages.findIndex(img => img.src === src);
+      }
+    });
+
+    document.getElementById("lightbox-img").src = src;
+    document.getElementById("lightbox-caption").textContent = caption;
+    lightbox.style.display = "flex";
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeLightbox() {
+    lightbox.style.display = "none";
+    document.body.style.overflow = "";
+  }
+
+  function showLightboxImage(index) {
+    if (!lightboxImages.length) return;
+    lightboxIndex = (index + lightboxImages.length) % lightboxImages.length;
+    document.getElementById("lightbox-img").src = lightboxImages[lightboxIndex].src;
+  }
+
+  document.getElementById("lightbox-close").addEventListener("click", closeLightbox);
+  document.getElementById("lightbox-prev").addEventListener("click", () => showLightboxImage(lightboxIndex - 1));
+  document.getElementById("lightbox-next").addEventListener("click", () => showLightboxImage(lightboxIndex + 1));
+  lightbox.addEventListener("click", (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (lightbox.style.display !== "flex") return;
+    if (e.key === "Escape") closeLightbox();
+    if (e.key === "ArrowLeft") showLightboxImage(lightboxIndex - 1);
+    if (e.key === "ArrowRight") showLightboxImage(lightboxIndex + 1);
+  });
+
 })();
